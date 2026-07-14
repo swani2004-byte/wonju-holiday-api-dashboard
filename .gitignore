@@ -1,0 +1,25 @@
+# 가상환경
+.venv/
+venv/
+env/
+
+# 비밀
+.env
+.env.*
+.streamlit/secrets.toml
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# 실행 중 생성되는 결과 (원본 샘플 data/는 유지)
+outputs/
+
+# OS / IDE
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
