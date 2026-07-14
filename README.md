@@ -50,6 +50,7 @@ cd wonju-holiday-api-dashboard
 
 ## Community Cloud
 
+- GitHub: https://github.com/swani2004-byte/wonju-holiday-api-dashboard
 - Main file: `app.py`
 - 이 폴더만 GitHub 저장소로 올리면 됩니다.
 - `.env`, API 키, `secrets.toml`은 올리지 마세요.
