@@ -12,7 +12,7 @@
 
 실제 업무 자료·개인정보는 포함되어 있지 않습니다.
 
-## 로컬 실행 방법 (배포 전 테스트 완료)
+## 로컬 실행 방법
 
 상위 폴더 `wonju-advanced-demos`의 가상환경(`.venv`)을 재사용합니다.
 
@@ -25,32 +25,46 @@ cd wonju-holiday-api-dashboard
 브라우저: http://localhost:8501  
 (로그인·API 키 불필요. 종료는 터미널에서 `Ctrl+C`)
 
-### 로컬 확인 결과 (성공)
-
-| 항목 | 결과 |
-|------|------|
-| 가상환경 | 상위 `.venv` 재사용 |
-| 패키지 | `streamlit`, `pandas`, `tabulate` 설치·동작 |
-| HTTP | http://localhost:8501 → **200 OK** |
-| AppTest | 제목「공휴일 · 문의 워밍업 대시보드」렌더 OK |
-| 숫자 | 공휴일 10 · 문의 18 · 전날 126 · 당일 28 |
-
-### 브라우저에서 확인할 것
-
-1. **공휴일 표** — 섹션「1. 공휴일 목록」에 날짜·공휴일명 (10행)
-2. **문의 + 휴일 여부** — 섹션「2」표의 **`휴일여부`** 컬럼  
-   (내부 필드명은 `is_holiday`이며, 화면에는 `휴일여부`로 표시됩니다. 자료의 `holiday_yn`과 같은 역할입니다.)
-3. **요약** — 상단 지표「전날 − 당일(요약)」과 파란 안내문(전날 합계가 당일보다 많음), 섹션「3」비교 표의 **`요약포함`** 열
-
-자동 점검만 다시 돌리려면:
+자동 점검:
 
 ```powershell
 ..\.venv\Scripts\python.exe scripts\preflight_local.py
 ```
 
-## Community Cloud
+## 화면 결과 설명
 
-- GitHub: https://github.com/swani2004-byte/wonju-holiday-api-dashboard
+1. **공휴일 표** — 섹션「1. 공휴일 목록」에 교육용 JSON의 날짜·공휴일명을 표로 보여 줍니다 (샘플 기준 10행).
+2. **holiday_yn / 휴일여부** — 섹션「2. 문의 + 휴일 여부」표에서 각 문의 날짜가 공휴일인지 표시합니다.  
+   자료·내부 필드로는 `is_holiday`(또는 개념상 `holiday_yn`)이고, **화면 컬럼명은 `휴일여부`**입니다 (`True`/`False`).
+3. **요약** — 공휴일 전날과 당일 문의 건수를 비교하고, 상단에「전날 − 당일(요약)」을 보여 줍니다.
+
+## 배포(공유) URL
+
+| 구분 | 주소 |
+|------|------|
+| GitHub (코드) | https://github.com/swani2004-byte/wonju-holiday-api-dashboard |
+| Streamlit 공유 URL (제출용) | https://wonju-holiday-api-dashboard-z4mt7yavq9n99it46sl6mw.streamlit.app/ |
+
 - Main file: `app.py`
-- 이 폴더만 GitHub 저장소로 올리면 됩니다.
-- `.env`, API 키, `secrets.toml`은 올리지 마세요.
+- Branch: `main`
+- Secrets: 비움 (교육용 샘플만 사용, API 키 없음)
+- `.env`, API 키, `secrets.toml`은 GitHub에 올리지 않습니다.
+
+## Community Cloud · 재배포
+
+코드를 고친 뒤:
+
+1. `git commit` → `git push`  
+2. Streamlit Community Cloud가 새 커밋을 받아 다시 빌드  
+3. **같은 공유 URL**로 결과 확인  
+
+## 최종 제출 체크리스트
+
+- [ ] GitHub에 `.env`, `.venv`, `secrets.toml`, `outputs/`, `__pycache__/` 가 **올라가지 않음**
+- [ ] `requirements.txt`에 앱에 필요한 패키지만 있음 (`streamlit`, `pandas`, `tabulate`)
+- [ ] README에 **로컬 실행 방법**이 있음
+- [ ] README에 **배포(공유) URL**이 있음 (`*.streamlit.app`)
+- [ ] README에 **공휴일 표**와 **holiday_yn(=휴일여부)** 설명이 있음
+- [ ] 공개 URL에서 공휴일 표 · 휴일여부 · 요약이 보임
+- [ ] Secrets / API 키를 README·채팅·GitHub에 적지 않음
+- [ ] 제출물에는 **교육용 샘플 데이터**만 사용했음을 명시함
